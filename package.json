@@ -1,0 +1,43 @@
+{
+  "name": "famous-people-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "ts-node --project tsconfig.server.json server/index.ts",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build:next": "next build",
+    "build": "npm run build:server",
+    "start": "NODE_ENV=production node dist/index.js"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.31",
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-regular-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.20.0",
+    "clsx": "^1.1.1",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "next": "^10.0.3",
+    "node-sass": "^4.14.1",
+    "nodemon": "^2.0.4",
+    "react": "16.13.1",
+    "react-app-polyfill": "^1.0.6",
+    "react-dom": "16.13.1",
+    "react-id-swiper": "^4.0.0",
+    "react-lines-ellipsis": "^0.14.1",
+    "react-sticky-el": "^2.0.5",
+    "swiper": "^6.3.5",
+    "ts-node": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^14.10.3",
+    "@types/react": "^16.9.49",
+    "@types/react-sticky-el": "^1.0.2",
+    "typescript": "^4.0.2"
+  }
+}

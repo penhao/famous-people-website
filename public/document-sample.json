@@ -1,0 +1,92 @@
+{
+  "status": "ok",
+  "querys": [
+    {
+      "mId": 398229,
+      "title": "林朝英<雙鵝入群展啼鳴> /",
+      "isbns": "9789860319156",
+      "authors": "王耀庭",
+      "publishers": "臺南市政府 ;",
+      "externalCoverUrl": "http://static.findbook.tw/image/book/9860319154/large",
+      "keyword": "臺灣.,藝術家,林朝英,,臺灣傳記",
+      "counts": 2,
+      "placeOfPublication": "臺南市 :",
+      "year": "2012",
+      "languages": "中文",
+      "recordType": "書目-語言資料,印刷品",
+      "itemCount": 28,
+      "availableItemCountForLoan": 25,
+      "items": [
+        {
+          "itemId": 1827848,
+          "itemNumber": "31204004247152",
+          "locationName": "A_B-市圖開架閱覽區",
+          "itemClassName": "L可借28天",
+          "materialType": "中文書",
+          "callNumber": "909.933 1090 2012",
+          "usageClassName": "一般(Normal)",
+          "inventoryStatus": "修補中",
+          "dateReceived": "2013/02/06",
+          "cclSubject": "藝術類→藝術總論→藝術史",
+          "allowReserve": "0"
+        },
+        {
+          "itemId": 1827849,
+          "itemNumber": "31204004247160",
+          "locationName": "B_HSC-安平罕用書庫（閉架隱藏）",
+          "itemClassName": "L可借28天",
+          "materialType": "中文書",
+          "callNumber": "909.933 1090 2012",
+          "usageClassName": "一般(Normal)",
+          "inventoryStatus": "在架",
+          "dateReceived": "2013/02/06",
+          "cclSubject": "藝術類→藝術總論→藝術史",
+          "allowReserve": "1"
+        }
+      ]
+    },
+    {
+      "mId": 296723,
+      "title": "台灣百年古厝系列",
+      "authors": "臺灣",
+      "publishers": "豪客唱片總代理,",
+      "externalCoverUrl": "noimage",
+      "keyword": "建築,臺灣",
+      "counts": 2,
+      "placeOfPublication": "臺北市 :",
+      "year": "2012",
+      "languages": "中文",
+      "recordType": "書目-語言資料,印刷品",
+      "itemCount": 24,
+      "availableItemCountForLoan": 24,
+      "items": [
+        {
+          "itemId": 1301204,
+          "itemNumber": "41204000518737",
+          "locationName": "A_AV-市圖視聽區",
+          "itemClassName": "可借14天",
+          "materialType": "DVD",
+          "callNumber": "DVD 923.33 2318 2012 v.1",
+          "usageClassName": "一般(Normal)",
+          "inventoryStatus": "在架",
+          "dateReceived": "2014/12/30",
+          "cclSubject": "藝術類→建築藝術→各國建築",
+          "allowReserve": "1"
+        },
+        {
+          "itemId": 1301205,
+          "itemNumber": "41204000518745",
+          "locationName": "A_AV-市圖視聽區",
+          "itemClassName": "可借14天",
+          "materialType": "DVD",
+          "callNumber": "DVD 923.33 2318 2012 v.2",
+          "usageClassName": "一般(Normal)",
+          "inventoryStatus": "在架",
+          "dateReceived": "2014/12/30",
+          "cclSubject": "藝術類→建築藝術→各國建築",
+          "allowReserve": "1"
+        }
+      ]
+    }
+  ]
+}
