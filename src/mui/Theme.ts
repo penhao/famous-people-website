@@ -60,6 +60,7 @@ const Theme = createMuiTheme({
     }
 });
 Theme.typography.h3 = {
+    fontFamily: ['"Noto Serif TC"', '"serif"'].join(','),
     fontSize: '30px',
     lineHeight: 1,
     letterSpacing: "normal",
@@ -71,11 +72,13 @@ Theme.typography.h3 = {
     }
 };
 Theme.typography.h4 = {
+    fontFamily: ['"Noto Serif TC"', '"serif"'].join(','),
     fontSize: '36px',
     lineHeight: 1,
     letterSpacing: "normal"
 };
 Theme.typography.h5 = {
+    fontFamily: ['"Noto Serif TC"', '"serif"'].join(','),
     fontSize: Theme.typography.pxToRem(24),
     lineHeight: Theme.typography.pxToRem(35),
     letterSpacing: "normal",

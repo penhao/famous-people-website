@@ -172,7 +172,7 @@ const DocumentAccordion = ({data}: Props) => {
         <Accordion className={classes.accordion}>
             <AccordionSummary expandIcon={<ArrowDownwardOutlinedIcon/>}>
                 <div className={classes.head}>
-                    <Grid container spacing={mdUp ? 4 : 2}>
+                    <Grid container spacing={mdUp ? 4 : smUp ? 2 : 1}>
                         <Grid item xs={6} sm={4} md={4}>
                             <Box display={'flex'} alignItems={'center'} flexWrap={'nowrap'}
                                  className={classes.headItem}>

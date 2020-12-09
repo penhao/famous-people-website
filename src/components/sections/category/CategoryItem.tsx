@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         paddingTop: '10px'
     },
     icon: {
-        display: 'inline-flex',
+        display: 'block',
         position: 'absolute',
         top: '5px',
         right: 0,

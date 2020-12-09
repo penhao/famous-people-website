@@ -183,7 +183,7 @@ const CollectionAccordion = ({id, data}: Props) => {
         <Accordion className={classes.accordion}>
             <AccordionSummary expandIcon={<ArrowDownwardOutlinedIcon/>}>
                 <div className={classes.head}>
-                    <Grid container spacing={mdUp ? 4 : 2}>
+                    <Grid container spacing={mdUp ? 4 : smUp ? 2 : 1}>
                         <Grid item xs={12} sm={1} md={1}>
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
                                 <FormatListBulletedOutlinedIcon/>
