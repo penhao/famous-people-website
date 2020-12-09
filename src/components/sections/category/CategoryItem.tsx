@@ -17,7 +17,13 @@ interface IProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
     link: {
-        padding: '12px 18px'
+        padding: '12px 20px',
+        '&:hover': {
+            backgroundColor: theme.palette.common.white,
+            '& svg': {
+                animation: `$ArrowForwardEffect 0.7s ${theme.transitions.easing.easeOut}`
+            }
+        }
     },
     info: {
         position: 'relative',
@@ -32,15 +38,34 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     years: {
         fontFamily: ['"Playfair Display"', '"serif"'].join(','),
-        marginTop: 'auto'
+        marginTop: 'auto',
+        paddingTop: '10px'
     },
     icon: {
         display: 'inline-flex',
         position: 'absolute',
         top: '5px',
         right: 0,
+        overflow: 'hidden',
         '& svg': {
             width: '24px'
+        }
+    },
+    "@keyframes ArrowForwardEffect": {
+        '0%': {
+            transform: 'translate(0, 0)'
+        },
+        '30%': {
+            transform: 'translate(100%, 0)'
+        },
+        '51%': {
+            transform: 'translate(100%, 0)'
+        },
+        '52%': {
+            transform: 'translate(-100%, 0)'
+        },
+        '100%': {
+            transform: 'translate(0, 0)'
         }
     }
 }));
@@ -66,7 +91,7 @@ const CategoryItem = ({href, caption, name, desc, years}: IProps) => {
                         basedOn='letters'
                     />
                 </Typography>
-                <Typography variant={"h5"} component={'div'} color={"primary"} className={classes.years}>
+                <Typography variant={"h6"} component={'div'} color={"primary"} className={classes.years}>
                     {years}
                 </Typography>
                 <div className={classes.icon}>

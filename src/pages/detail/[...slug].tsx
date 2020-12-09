@@ -168,7 +168,6 @@ const FamousPeopleDetail = ({fetchPost}) => {
                             <TabPanel value={value} index={1}>
                                 <DetailDocumentList documentData={documentData}/>
                             </TabPanel>
-                            {/*collectible*/}
                             {
                                 (fetchPost.data.collectible.length)
                                     ?

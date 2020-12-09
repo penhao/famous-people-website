@@ -31,7 +31,6 @@ const DetailIntro = ({postData}: Props) => {
     const classes = useStyles();
     const globalClasses = useGlobalStyles();
     const theme = useTheme();
-    console.log(postData.achieve);
     return (
         <Grid container className={globalClasses.drawLineSmUp}>
             <Grid item xs={12} sm={6} className={clsx(classes.bgGrey, globalClasses.item)}>

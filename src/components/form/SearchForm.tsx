@@ -10,6 +10,8 @@ import {useRouter} from "next/router";
 
 const useStyles = makeStyles((theme: Theme) => ({
     form: {
+        backgroundColor: theme.palette.common.white,
+        overflow: 'hidden',
         '& .MuiGrid-container': {
             '& .MuiGrid-item': {
                 '&:nth-child(1)': {
@@ -22,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         }
     },
     search: {
-        height: '48px',
+        height: '50px',
         paddingLeft: '20px',
         paddingRight: '20px',
         '& .MuiInput-root': {

@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         [theme.breakpoints.up('md')]: {}
     },
     search: {
-        height: '48px',
+        // height: '48px',
         marginTop: 'auto',
         '& .MuiInput-root': {
             width: '100%',

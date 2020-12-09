@@ -14,6 +14,7 @@ interface Props {
     genderList: genderType[];
     genderChangeHandler: (gender: genderType) => void;
 }
+
 const useStyles = makeStyles((theme: Theme) => ({
     filter: {},
     categoryList: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         }
     },
     link: {
-        padding: '15px 20px',
+        padding: '10px 20px',
         '&:hover': {
             color: theme.palette.primary.main
         },
@@ -57,16 +58,22 @@ const useStyles = makeStyles((theme: Theme) => ({
             fontSize: theme.typography.pxToRem(18),
             textAlign: 'center',
             fontWeight: 600
+        },
+        [theme.breakpoints.up('sm')]: {
+            padding: '15px 20px',
         }
     },
     gender: {
-        padding: '15px 20px',
+        padding: '10px 20px',
         fontSize: theme.typography.pxToRem(18),
         textAlign: 'center',
         fontWeight: 600,
         '&.active': {
             color: theme.palette.primary.main,
             textDecoration: 'underline'
+        },
+        [theme.breakpoints.up('sm')]: {
+            padding: '15px 20px',
         }
     }
 }));

@@ -8,6 +8,7 @@ import CategoryLink from "../../links/CategoryLink";
 import {useLineGridStyles} from "../GridStyles";
 import SectionInfo from "../SectionInfo";
 import DrawLineItem from "../../DrawLineItem";
+import useCategoryFilterList from "../category/useCategoryFilterList";
 
 const useStyles = makeStyles((theme: Theme) => ({
     item: {
@@ -27,23 +28,23 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     WuXinRong: {
         position: 'absolute',
-        width: '320px',
+        width: '310px',
         left: 0,
-        transform: 'translate(-30%,0)',
+        transform: 'translate(-31%,2%)',
         bottom: 0,
     },
     YeShiTao: {
         position: 'absolute',
         width: '300px',
         right: 0,
-        transform: 'translate(10%,0)',
+        transform: 'translate(13%,4%)',
         bottom: 0
     },
     LuJiaXing: {
         position: 'absolute',
         width: '280px',
         right: 0,
-        transform: 'translate(20%,0)',
+        transform: 'translate(25%,2%)',
         bottom: 0
     },
     JiangYuanShu: {
@@ -151,7 +152,7 @@ const HomeCTA = () => {
                                                     yearsAlign={"right"}
                                                     infoReverse
                                                     textAlign={"right"}
-                                        >
+                                                    backgroundColor={useTheme().palette.grey["300"]}>
                                             <img src="/images/home/wu-xinrong.png" alt=""
                                                  className={classes.WuXinRong}/>
                                         </DetailLink>
@@ -164,7 +165,7 @@ const HomeCTA = () => {
                                                     name={'葉石濤'}
                                                     caption={'沒有土地哪有文學'}
                                                     years={'1925~2008'}
-                                        >
+                                                    backgroundColor={useTheme().palette.common.white}>
                                             <img src="/images/home/ye-shitao.png" alt="" className={classes.YeShiTao}/>
                                         </DetailLink>
                                     </DrawLineItem>
@@ -174,7 +175,7 @@ const HomeCTA = () => {
                         <Grid item xs={12} sm={4}>
                             <DrawLineItem drawLine={{xs: false, sm: false, md: true}}
                                           customClass={classes.item}>
-                                <DetailLink href={`/detail/50/${encodeURIComponent('盧嘉興')}`}
+                                <DetailLink href={`/detail/87/${encodeURIComponent('盧嘉興')}`}
                                             name={'盧嘉興'}
                                             caption={'臺灣文史學人'}
                                             years={'1918~1992'}
@@ -189,10 +190,11 @@ const HomeCTA = () => {
                 <Grid item xs={12} md={6}>
                     <DrawLineItem drawLine={{xs: false, sm: false, md: false}}
                                   customClass={classes.item}>
-                        <CategoryLink href={`/category/0/${encodeURIComponent('文學')}`}
+                        <CategoryLink href={`/category/2/${encodeURIComponent('文學')}`}
                                       title={'文學'}
                                       label={'LITERATURE'}
-                                      textAlign={"left"}/>
+                                      textAlign={"left"}
+                                      imgUrl={'/images/cover-literature.png'}/>
                     </DrawLineItem>
                 </Grid>
             </Grid>
@@ -202,7 +204,11 @@ const HomeCTA = () => {
                 <Grid item xs={12} sm={6} md={8}>
                     <DrawLineItem drawLine={{xs: false, sm: true, md: true}}
                                   customClass={classes.item}>
-                        <CategoryLink href={'/category/0'} title={'政治'} label={'LITERATURE'} textAlign={"left"}/>
+                        <CategoryLink href={`/category/4/${encodeURIComponent('政治')}`}
+                                      title={'政治'}
+                                      label={'POLITICS'}
+                                      textAlign={"left"}
+                                      imgUrl={'/images/cover-politics.png'}/>
                     </DrawLineItem>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
@@ -235,7 +241,7 @@ const HomeCTA = () => {
                                             years={'1901~1974'}
                                             textAlign={"right"}
                                             yearsAlign={"right"}
-                                >
+                                            backgroundColor={useTheme().palette.grey["300"]}>
                                     <img src="/images/home/guo-baichuan.png" alt="" className={classes.GuoBaiChuan}/>
                                 </DetailLink>
                             </DrawLineItem>
@@ -243,11 +249,11 @@ const HomeCTA = () => {
                         <Grid item xs={6}>
                             <DrawLineItem drawLine={{xs: false, sm: false, md: true}}
                                           customClass={classes.item}>
-                                <DetailLink href={`/detail/19/${encodeURIComponent('廖枝德')}`}
+                                <DetailLink href={`/detail/209/${encodeURIComponent('廖枝德')}`}
                                             name={'廖枝德'}
                                             caption={'大木作工藝的極致'}
                                             years={'1930~2015'}
-                                >
+                                            backgroundColor={useTheme().palette.common.white}>
                                     <img src="/images/home/liao-zhide.png" alt="" className={classes.LiaoZhiDe}/>
                                 </DetailLink>
                             </DrawLineItem>
@@ -257,7 +263,11 @@ const HomeCTA = () => {
                 <Grid item xs={12} md={8}>
                     <DrawLineItem drawLine={{xs: false, sm: false, md: false}}
                                   customClass={classes.item}>
-                        <CategoryLink href={'/category/0'} title={'藝術'} label={'LITERATURE'} textAlign={"left"}/>
+                        <CategoryLink href={`/category/1/${encodeURIComponent('藝術')}`}
+                                      title={'藝術'}
+                                      label={'ART'}
+                                      textAlign={"left"}
+                                      imgUrl={'/images/cover-art.png'}/>
                     </DrawLineItem>
                 </Grid>
             </Grid>
@@ -268,17 +278,21 @@ const HomeCTA = () => {
                 <Grid item xs={12} sm={7} md={8}>
                     <DrawLineItem drawLine={{xs: false, sm: true, md: true}}
                                   customClass={classes.item}>
-                        <CategoryLink href={'/category/0'} title={'技術'} label={'LITERATURE'} textAlign={"left"}/>
+                        <CategoryLink href={`/category/8/${encodeURIComponent('技術')}`}
+                                      title={'技術'}
+                                      label={'TECHNOLOGY'}
+                                      textAlign={"left"}
+                                      imgUrl={'/images/cover-technology.png'}/>
                     </DrawLineItem>
                 </Grid>
                 <Grid item xs={12} sm={5} md={4}>
                     <DrawLineItem drawLine={{xs: false, sm: false, md: false}}
                                   customClass={classes.item}>
-                        <DetailLink href={`/detail/${encodeURIComponent('八田與一')}`}
+                        <DetailLink href={`/detail/211/${encodeURIComponent('八田與一')}`}
                                     name={'八田與一'}
                                     caption={'嘉南大圳之父'}
                                     years={'1886~1942'}
-                        >
+                                    backgroundColor={useTheme().palette.common.white}>
                             <img src="/images/home/yoichi-hatta.png" alt="" className={classes.YoichiHatta}/>
                         </DetailLink>
                     </DrawLineItem>
@@ -291,7 +305,7 @@ const HomeCTA = () => {
                 <Grid item xs={12} sm={5} md={4}>
                     <DrawLineItem drawLine={{xs: false, sm: true, md: true}}
                                   customClass={classes.item}>
-                        <DetailLink href={`/detail/${encodeURIComponent('孫理蓮')}`}
+                        <DetailLink href={`/detail/200/${encodeURIComponent('孫理蓮')}`}
                                     name={'孫理蓮'}
                                     caption={'為臺灣奉獻的母親'}
                                     years={'1901~1983'}
@@ -307,7 +321,11 @@ const HomeCTA = () => {
                 <Grid item xs={12} sm={7} md={8}>
                     <DrawLineItem drawLine={{xs: false, sm: false, md: false}}
                                   customClass={classes.item}>
-                        <CategoryLink href={'/category/0'} title={'學術教育'} label={'LITERATURE'} textAlign={"left"}/>
+                        <CategoryLink href={`/category/3/${encodeURIComponent('學術教育')}`}
+                                      title={'學術教育'}
+                                      label={'EDUCATION'}
+                                      textAlign={"left"}
+                                      imgUrl={'/images/cover-education.png'}/>
                     </DrawLineItem>
                 </Grid>
             </Grid>
@@ -318,7 +336,11 @@ const HomeCTA = () => {
                 <Grid item xs={12} md={6}>
                     <DrawLineItem drawLine={{xs: false, sm: false, md: true}}
                                   customClass={classes.item}>
-                        <CategoryLink href={'/category/0'} title={'醫療'} label={'LITERATURE'} textAlign={"left"}/>
+                        <CategoryLink href={`/category/5/${encodeURIComponent('醫療')}`}
+                                      title={'醫療'}
+                                      label={'MEDICAL'}
+                                      textAlign={"left"}
+                                      imgUrl={'/images/cover-medical.png'}/>
                     </DrawLineItem>
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -326,13 +348,13 @@ const HomeCTA = () => {
                         <Grid item xs={6}>
                             <DrawLineItem drawLine={{xs: true, sm: true, md: true}}
                                           customClass={classes.item}>
-                                <DetailLink href={`/detail/${encodeURIComponent('馬雅各')}`}
+                                <DetailLink href={`/detail/192/${encodeURIComponent('馬雅各')}`}
                                             name={'馬雅各'}
                                             caption={'為臺灣引進現代醫療的先驅'}
                                             years={'1836~1921'}
                                             textAlign={"right"}
                                             yearsAlign={"right"}
-                                >
+                                            backgroundColor={useTheme().palette.grey["300"]}>
                                     <img src="/images/home/mayaque.png" alt="" className={classes.Mayaque}/>
                                 </DetailLink>
                             </DrawLineItem>
@@ -340,7 +362,7 @@ const HomeCTA = () => {
                         <Grid item xs={6}>
                             <DrawLineItem drawLine={{xs: false, sm: false, md: false}}
                                           customClass={classes.item}>
-                                <DetailLink href={`/detail/${encodeURIComponent('王金河')}`}
+                                <DetailLink href={`/detail/159/${encodeURIComponent('王金河')}`}
                                             name={'王金河'}
                                             caption={'臺灣烏腳病之父'}
                                             years={'1836~1921'}
@@ -359,13 +381,13 @@ const HomeCTA = () => {
                 <Grid item xs={12} sm={5} md={4}>
                     <DrawLineItem drawLine={{xs: false, sm: true, md: true}}
                                   customClass={classes.item}>
-                        <DetailLink href={`/detail/${encodeURIComponent('許藏春')}`}
+                        <DetailLink href={`/detail/188/${encodeURIComponent('許藏春')}`}
                                     name={'許藏春'}
                                     caption={'見證五條港的風華'}
                                     years={'1853~1919'}
                                     textAlign={"right"}
                                     yearsAlign={"right"}
-                        >
+                                    backgroundColor={useTheme().palette.common.white}>
                             <img src="/images/home/xu-zangchun.png" alt="" className={classes.XuZangChun}/>
                         </DetailLink>
                     </DrawLineItem>
@@ -373,7 +395,11 @@ const HomeCTA = () => {
                 <Grid item xs={12} sm={7} md={8}>
                     <DrawLineItem drawLine={{xs: false, sm: false, md: false}}
                                   customClass={classes.item}>
-                        <CategoryLink href={'/category/0'} title={'經濟'} label={'LITERATURE'} textAlign={"left"}/>
+                        <CategoryLink href={`/category/6/${encodeURIComponent('經濟')}`}
+                                      title={'經濟'}
+                                      label={'ECONOMIC'}
+                                      textAlign={"left"}
+                                      imgUrl={'/images/cover-economic.png'}/>
                     </DrawLineItem>
                 </Grid>
             </Grid>
@@ -383,13 +409,17 @@ const HomeCTA = () => {
                 <Grid item xs={12} sm={7} md={8}>
                     <DrawLineItem drawLine={{xs: false, sm: true, md: true}}
                                   customClass={classes.item}>
-                        <CategoryLink href={'/category/0'} title={'宗教'} label={'LITERATURE'} textAlign={"left"}/>
+                        <CategoryLink href={`/category/7/${encodeURIComponent('宗教')}`}
+                                      title={'宗教'}
+                                      label={'RELIGIONS'}
+                                      textAlign={"left"}
+                                      imgUrl={'/images/cover-religions.png'}/>
                     </DrawLineItem>
                 </Grid>
                 <Grid item xs={12} sm={5} md={4}>
                     <DrawLineItem drawLine={{xs: false, sm: false, md: false}}
                                   customClass={classes.item}>
-                        <DetailLink href={`/detail/${encodeURIComponent('湯瑪斯巴克禮')}`}
+                        <DetailLink href={`/detail/194/${encodeURIComponent('湯瑪斯巴克禮')}`}
                                     name={'湯瑪斯·巴克禮'}
                                     caption={'為愛航向福爾摩沙'}
                                     years={'1849~1935'}

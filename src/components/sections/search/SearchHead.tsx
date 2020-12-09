@@ -92,7 +92,7 @@ const SearchHead = ({keyword, total = 0}: Props) => {
                                 color={"primary"}
                                 align={"center"}
                                 className={clsx(classes.name, globalClasses.fontSerif)}>
-                        {keyword}
+                        {`「 ${keyword} 」`}
                     </Typography>
                 </div>
             </Grid>

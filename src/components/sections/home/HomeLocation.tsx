@@ -9,8 +9,10 @@ import SectionInfo from "../SectionInfo";
 import DrawLineItem from "../../DrawLineItem";
 
 const useStyles = makeStyles((theme: Theme) => ({
+    info:{
+        backgroundColor:theme.palette.grey["300"]
+    },
     list: {
-        // padding: '25px 25px 80px 25px',
         '& li': {
             marginBottom: '20px',
             '&:last-child': {
@@ -27,10 +29,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 const HomeLocation = () => {
     const classes = useStyles();
-    const gridClasses = useLineGridStyles();
     return (
         <Grid container>
-            <Grid item xs={12} sm={5} md={4}>
+            <Grid item xs={12} sm={5} md={4} className={classes.info}>
                 <DrawLineItem drawLine={{xs: false, sm: true, md: true}}>
                     <SectionInfo>
                         <ul className={classes.list}>

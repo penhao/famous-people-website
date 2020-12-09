@@ -52,7 +52,7 @@ const SearchPage = ({fetchCategory}) => {
     }, [router, fetchCategory]);
     return (
         <Layout>
-            <SearchHead keyword={router.query.slug[0]} total={0}/>
+            <SearchHead keyword={router.query.slug[0]} total={getFilterPostData().length}/>
             <CategoryFilter categoryFilterList={categoryFilterList}
                             genderList={genderList}
                             genderChangeHandler={handleGender}/>

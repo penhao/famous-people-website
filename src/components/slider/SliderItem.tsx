@@ -42,7 +42,7 @@ const SliderItem = ({title, imgUrl}: Props) => {
     const classes = useStyles({imgUrl});
     return (
         <div className={classes.item}>
-            <RatioContainer ratio={{xs: 530 / 830, sm: 530 / 830, md: 530 / 830}}>
+            <RatioContainer ratio={{xs: 671 / 1010, sm: 671 / 1010, md: 671 / 1010}}>
                 <div className={classes.cover}/>
             </RatioContainer>
             <Typography variant={"body1"} className={classes.desc}>

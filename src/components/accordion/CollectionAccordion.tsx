@@ -22,6 +22,11 @@ import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutline
 import ArrowDownwardOutlinedIcon from '@material-ui/icons/ArrowDownwardOutlined';
 import {isValueEmpty} from "../../utils/Utils";
 import PhotoAlbumToggle from "../buttons/PhotoAlbumToggle";
+import FormatListBulletedOutlinedIcon from '@material-ui/icons/FormatListBulletedOutlined';
+import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
+import GrainOutlinedIcon from '@material-ui/icons/GrainOutlined';
+import BookmarksOutlinedIcon from '@material-ui/icons/BookmarksOutlined';
+import EventOutlinedIcon from '@material-ui/icons/EventOutlined';
 
 interface Props {
     id: number;
@@ -39,8 +44,11 @@ const useStyles = makeStyles((theme: Theme) => ({
         boxShadow: 'none !important',
         backgroundColor: 'transparent',
         '& .MuiAccordionSummary-root': {
-            padding: '20px',
+            padding: '10px 20px',
             backgroundColor: 'transparent',
+            [theme.breakpoints.up('sm')]: {
+                padding: '10px 60px 10px 20px',
+            },
             [theme.breakpoints.up('md')]: {
                 padding: '10px 20px',
             }
@@ -73,7 +81,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         maxWidth: '440px',
         margin: '0 auto',
         [theme.breakpoints.up('sm')]: {
-            maxWidth: '670px'
+            maxWidth: 'none'
         },
         [theme.breakpoints.up('md')]: {
             maxWidth: '1000px'
@@ -93,15 +101,22 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: '100%',
         maxWidth: '1000px',
         margin: '0 auto',
+        padding: '0',
+        [theme.breakpoints.up('sm')]: {
+            padding: '0 20px',
+        },
         '& .MuiGrid-item': {
             [theme.breakpoints.up('sm')]: {
-                width: 'auto'
+                // width: 'auto'
             }
         }
     },
     coverRatio: {
         width: '100%',
         [theme.breakpoints.up('sm')]: {
+            width: '200px'
+        },
+        [theme.breakpoints.up('md')]: {
             width: '200px'
         }
     },
@@ -114,9 +129,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     info: {
         width: '100%',
-        maxWidth: '480px',
-        padding: '20px 0',
-        margin: '0 auto'
+        maxWidth: '400px',
+        padding: '0 20px 20px 20px',
+        margin: '0 auto',
+        [theme.breakpoints.up('sm')]: {
+            width: '100%',
+            maxWidth: '360px',
+            padding: '20px 0'
+        }
     },
     bookName: {
         fontSize: theme.typography.pxToRem(24),
@@ -164,21 +184,21 @@ const CollectionAccordion = ({id, data}: Props) => {
             <AccordionSummary expandIcon={<ArrowDownwardOutlinedIcon/>}>
                 <div className={classes.head}>
                     <Grid container spacing={mdUp ? 4 : 2}>
-                        <Grid item xs={12} sm={6} md={2}>
+                        <Grid item xs={12} sm={1} md={1}>
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
-                                <BookmarkBorderOutlinedIcon/>
+                                <FormatListBulletedOutlinedIcon/>
                                 <Typography variant={"body1"} component={'div'}>
                                     {id}
                                 </Typography>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4}>
+                        <Grid item xs={6} sm={3} md={4}>
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
-                                <BookmarkBorderOutlinedIcon/>
+                                <MapOutlinedIcon/>
                                 <div className={classes.ellipsisWrapper}>
                                     <Typography variant={"body1"} component={'div'}>
                                         <LinesEllipsis
-                                            text={data.title}
+                                            text={getBookTitle(data.title)}
                                             maxLine='1'
                                             ellipsis='...'
                                             trimRight
@@ -187,33 +207,28 @@ const CollectionAccordion = ({id, data}: Props) => {
                                 </div>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={2}>
+                        <Grid item xs={6} sm={3} md={3}>
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
-                                <BookmarkBorderOutlinedIcon/>
+                                <GrainOutlinedIcon/>
                                 <div className={classes.ellipsisWrapper}>
                                     <Typography variant={"body1"} component={'div'}>
-                                        <LinesEllipsis
-                                            text={data.serial}
-                                            maxLine='1'
-                                            ellipsis='...'
-                                            trimRight
-                                            basedOn='letters'/>
+                                        {data.serial}
                                     </Typography>
                                 </div>
                             </Box>
 
                         </Grid>
-                        <Grid item xs={12} sm={6} md={2}>
+                        <Grid item xs={6} sm={3} md={2}>
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
-                                <BookmarkBorderOutlinedIcon/>
+                                <BookmarksOutlinedIcon/>
                                 <Typography variant={"body1"} component={'div'}>
                                     {data.cat}
                                 </Typography>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={2}>
+                        <Grid item xs={6} sm={2} md={2}>
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
-                                <BookmarkBorderOutlinedIcon/>
+                                <EventOutlinedIcon/>
                                 <Typography variant={"body1"} component={'div'}>
                                     {data.years}
                                 </Typography>
@@ -223,25 +238,26 @@ const CollectionAccordion = ({id, data}: Props) => {
                 </div>
             </AccordionSummary>
             <AccordionDetails>
-                <Grid container
-                      justify={smUp ? "center" : "flex-start"}
-                      alignItems={"center"}
-                      spacing={4}
-                      className={classes.detailContent}>
-                    <Grid item xs={12} sm={'auto'}>
-                        <RatioContainer ratio={{xs: 1, sm: 1, md: 1}}
-                                        className={classes.coverRatio}>
-                            <PhotoAlbumToggle photoData={data.images}/>
-                        </RatioContainer>
+                <div className={classes.detailContent}>
+                    <Grid container
+                          justify={smUp ? "center" : "flex-start"}
+                          alignItems={"center"}
+                          spacing={smUp ? 4 : 2}>
+                        <Grid item xs={12} sm={'auto'}>
+                            <RatioContainer ratio={{xs: 1, sm: 1, md: 1}}
+                                            className={classes.coverRatio}>
+                                <PhotoAlbumToggle photoData={data.images}/>
+                            </RatioContainer>
+                        </Grid>
+                        <Grid item xs={12} sm={'auto'}>
+                            <div className={classes.info}>
+                                <Typography variant={"body1"} component={'div'}>
+                                    {data.desc_text}
+                                </Typography>
+                            </div>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={'auto'}>
-                        <div className={classes.info}>
-                            <Typography variant={"body1"} component={'div'}>
-                                {data.desc_text}
-                            </Typography>
-                        </div>
-                    </Grid>
-                </Grid>
+                </div>
             </AccordionDetails>
         </Accordion>
     );

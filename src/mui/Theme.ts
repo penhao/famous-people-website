@@ -22,7 +22,7 @@ const Theme = createMuiTheme({
         grey: {
             200: '#f4f4f4',
             300: '#E2E6EB',
-            500: '#92989F',
+            500: '#9ca2a8',
             700: '#5C5D5D',
             900: '#0E2034'
         },

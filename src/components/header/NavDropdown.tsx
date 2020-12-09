@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: '100%',
         borderLeft: `1px solid ${theme.palette.common.black}`,
         borderRight: `1px solid ${theme.palette.common.black}`,
-        backgroundColor: theme.palette.grey["300"],
+        backgroundColor: theme.palette.grey["100"],
         [theme.breakpoints.up('sm')]: {
             width: '320px'
         },
@@ -50,12 +50,16 @@ const useStyles = makeStyles((theme: Theme) => ({
         }
     },
     link: {
-        fontSize: theme.typography.pxToRem(18),
-        padding: '15px 20px',
+        fontSize: theme.typography.pxToRem(16),
+        padding: '12px 20px',
         textAlign: 'center',
-        backgroundColor: theme.palette.grey["300"],
+        backgroundColor: theme.palette.grey["100"],
         '&:hover': {
             backgroundColor: theme.palette.primary.main
+        },
+        [theme.breakpoints.up('sm')]: {
+            fontSize: theme.typography.pxToRem(18),
+            padding: '12px 20px'
         }
     },
     backdrop: {
@@ -74,6 +78,9 @@ const NavDropdown = ({isOpen, clickHandler}: Props) => {
                        in={isOpen}
                        mountOnEnter unmountOnExit>
                     <ul className={classes.navList}>
+                        <li>
+                            <SearchForm/>
+                        </li>
                         {
                             categoryFilterList.map((category: any, index: number) => {
                                 return (
@@ -88,9 +95,6 @@ const NavDropdown = ({isOpen, clickHandler}: Props) => {
                                 )
                             })
                         }
-                        <li>
-                            <SearchForm/>
-                        </li>
                     </ul>
                 </Slide>
             </nav>

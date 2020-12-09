@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: '100%',
         color: ({descColor}: StyleProps) => descColor,
         [theme.breakpoints.up('sm')]: {
-            width: '85%',
+            // width: '85%',
         }
     }
 }));

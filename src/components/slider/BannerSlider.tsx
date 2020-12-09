@@ -24,21 +24,23 @@ const useStyles = makeStyles((theme: Theme) => ({
         '& .swiper-container': {},
     },
     sliderButton: {
-        width: '80px',
-        height: '80px',
+        width: '60px',
+        height: '60px',
         minWidth: 'auto',
         padding: 0,
         borderRadius: 0,
         zIndex: 1,
+        backgroundColor: 'rgba(0,0,0,0.1)',
         '& svg': {
             width: '38px'
         }
     },
     prevButton: {
         position: 'absolute',
-        left: 0,
-        top: '50%',
-        transform: 'translateY(-50%)',
+        right: '60px',
+        bottom: '46px',
+        /*top: '50%',
+        transform: 'translateY(-50%)',*/
         zIndex: 1,
         '& svg': {
             transform: 'rotate(-180deg)',
@@ -47,8 +49,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     nextButton: {
         position: 'absolute',
         right: 0,
-        top: '50%',
-        transform: 'translateY(-50%)',
+        bottom: '46px',
+        /*top: '50%',
+        transform: 'translateY(-50%)',*/
         zIndex: 1
     }
 }));
@@ -67,7 +70,11 @@ const BannerSlider = ({children}: Props) => {
         }
     };
     const params: SwiperOptions = {
-        loop: true
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'fraction',
+        }
     };
     return (
         <div className={classes.slider}>

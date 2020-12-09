@@ -11,17 +11,22 @@ import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import clsx from "clsx";
 import Hidden from "@material-ui/core/Hidden";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import useTheme from "@material-ui/core/styles/useTheme";
 
 const useStyles = makeStyles((theme: Theme) => ({
     footer: {
         width: '100%',
         paddingTop: '40px',
-        paddingBottom: '60px',
+        paddingBottom: '40px',
         backgroundColor: theme.palette.common.white
     },
     logo: {
         width: '100%',
-        maxWidth: '195px'
+        maxWidth: '160px',
+        [theme.breakpoints.up('sm')]: {
+            marginTop: '8px'
+        }
     },
     address: {
         '& *': {
@@ -29,40 +34,60 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
         '& $icon': {
             marginRight: '10px'
+        },
+        '& > div': {
+            marginBottom: '5px'
         }
     },
     icon: {
-        fontSize: '20px',
-        '& .large': {
-            fontSize: '30px',
+        fontSize: '20px'
+    },
+    socialLink: {
+        '& svg': {
+            fontSize: '24px'
         }
     },
     QRCode: {
-        width: '80px'
+        width: '120px'
+    },
+    socialList: {
+        marginTop: '10px',
+        '& a': {
+            marginRight: '15px'
+        }
     }
 }));
 const Footer = () => {
     const classes = useStyles();
+    const smUp = useMediaQuery(useTheme().breakpoints.up('sm'));
+    const mdUp = useMediaQuery(useTheme().breakpoints.up('md'));
     return (
         <footer className={classes.footer}>
-            <Container maxWidth={{xs: 'none', sm: 800, md: 800}}>
-                <Grid container spacing={4}>
-                    <Grid item>
-                        <NormalLink href={'/'} customClass={classes.logo}>
+            <Container maxWidth={{xs: 'none', sm: 'none', md: 1000}}>
+                <Grid container spacing={mdUp ? 4 : 2}>
+                    <Grid item xs={12} sm={12} md={3}>
+                        <NormalLink href={'https://www.tnpl.tn.edu.tw/w5368759830002704284/index'}
+                                    customClass={classes.logo}>
                             <img src="/images/logo-tnml-tn.png" alt=""/>
                         </NormalLink>
                     </Grid>
-                    <Grid item>
-                        <NormalLink href={'/'}>
-                            <Typography variant={"body1"} component={'span'}>台南市永康區中山南路363號</Typography>
-                        </NormalLink>
+                    <Grid item xs={12} sm={12} md={3}>
+                        <Typography variant={"body1"} component={'span'}>台南市永康區中山南路363號</Typography>
                         <Typography variant={"body1"}>開放時間：0800-2200</Typography>
+                        <div className={classes.socialList}>
+                            <NormalLink href={'https://www.tnpl.tn.edu.tw/w5368759830002704284/index'} customClass={classes.socialLink}>
+                                <FontAwesomeIcon icon={faLink}/>
+                            </NormalLink>
+                            <NormalLink href={'https://reurl.cc/6219jO'} customClass={classes.socialLink}>
+                                <FontAwesomeIcon icon={faFacebookSquare}/>
+                            </NormalLink>
+                        </div>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={12} sm={12} md={3}>
                         <address className={classes.address}>
                             <div>
                                 <FontAwesomeIcon icon={faPhone} className={classes.icon}/>
-                                <NormalLink href={'/'}>
+                                <NormalLink href={'tel:062255146'}>
                                     <Typography variant={"body1"} component={'span'}>(06)2255146</Typography>
                                 </NormalLink>
                             </div>
@@ -72,22 +97,14 @@ const Footer = () => {
                             </div>
                             <div>
                                 <FontAwesomeIcon icon={faEnvelope} className={classes.icon}/>
-                                <NormalLink href={'/'}>
+                                <NormalLink href={'mailto:ttwen@tnml.tn.edu.tw'}>
                                     <Typography variant={"body1"} component={'span'}>ttwen@tnml.tn.edu.tw</Typography>
-                                </NormalLink>
-                            </div>
-                            <div>
-                                <NormalLink href={'/'}>
-                                    <FontAwesomeIcon icon={faLink} className={clsx(classes.icon, 'large')}/>
-                                </NormalLink>
-                                <NormalLink href={'/'}>
-                                    <FontAwesomeIcon icon={faFacebookSquare} className={classes.icon}/>
                                 </NormalLink>
                             </div>
                         </address>
                     </Grid>
                     <Hidden smDown>
-                        <Grid item>
+                        <Grid item xs={12} sm={4} md={3}>
                             <img src="/images/qrcode.png" alt="" className={classes.QRCode}/>
                         </Grid>
                     </Hidden>

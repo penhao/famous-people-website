@@ -25,7 +25,13 @@ interface Props {
 const useStyles = makeStyles((theme: Theme) => ({
     link: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        backgroundColor: ({backgroundColor}: Props) => backgroundColor,
+        '&:hover': {
+            '& svg': {
+                animation: `$ArrowForwardEffect 0.7s ${theme.transitions.easing.easeOut}`
+            }
+        }
     },
     info: {
         position: 'relative',
@@ -33,27 +39,23 @@ const useStyles = makeStyles((theme: Theme) => ({
         height: '100%',
         padding: '13px 20px',
         zIndex: 1,
-        backgroundColor: ({backgroundColor}: Props) => backgroundColor,
         [theme.breakpoints.up('sm')]: {}
     },
     name: {
         fontWeight: 600,
         '& span': {
-            // padding: '5px',
-            backgroundColor: theme.palette.grey["200"]
+            backgroundColor: ({backgroundColor}: Props) => backgroundColor
         }
     },
     caption: {
         '& span': {
-            // padding: '5px',
-            backgroundColor: theme.palette.grey["200"]
+            backgroundColor: ({backgroundColor}: Props) => backgroundColor
         }
     },
     years: {
         fontFamily: ['"Playfair Display"', '"serif"'].join(','),
         '& span': {
-            // padding: '5px',
-            backgroundColor: theme.palette.grey["200"]
+            backgroundColor: ({backgroundColor}: Props) => backgroundColor
         }
     },
     iconWrapper: {
@@ -64,11 +66,32 @@ const useStyles = makeStyles((theme: Theme) => ({
             width: '24px'
         }
     },
+    iconMask: {
+        display: 'inline-block',
+        overflow: 'hidden'
+    },
     imgWrapper: {
         position: 'absolute',
         width: '100%',
         height: '100%',
         pointerEvents: 'none'
+    },
+    "@keyframes ArrowForwardEffect": {
+        '0%': {
+            transform: 'translate(0, 0)'
+        },
+        '30%': {
+            transform: 'translate(100%, 0)'
+        },
+        '51%': {
+            transform: 'translate(100%, 0)'
+        },
+        '52%': {
+            transform: 'translate(-100%, 0)'
+        },
+        '100%': {
+            transform: 'translate(0, 0)'
+        }
     }
 }));
 const DetailLink = (
@@ -95,7 +118,9 @@ const DetailLink = (
                         </Typography>
                     </div>
                     <div className={classes.iconWrapper}>
-                        <span><IconArrowStatic/></span>
+                        <div className={classes.iconMask}>
+                            <IconArrowStatic/>
+                        </div>
                     </div>
                 </Box>
                 <Typography variant={"h5"}

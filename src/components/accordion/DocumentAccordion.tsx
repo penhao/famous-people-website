@@ -4,7 +4,6 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {Theme} from "@material-ui/core";
 import RatioContainer from "../containers/RatioContainer";
 import Box from "@material-ui/core/Box";
@@ -12,15 +11,17 @@ import Grid from "@material-ui/core/Grid";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import LinesEllipsis from 'react-lines-ellipsis';
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import useTheme from "@material-ui/core/styles/useTheme";
-import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import ArrowDownwardOutlinedIcon from '@material-ui/icons/ArrowDownwardOutlined';
 import {isValueEmpty} from "../../utils/Utils";
+import Hidden from "@material-ui/core/Hidden";
+import MapOutlinedIcon from '@material-ui/icons/MapOutlined';
+import DomainOutlinedIcon from '@material-ui/icons/DomainOutlined';
+import BookmarksOutlinedIcon from '@material-ui/icons/BookmarksOutlined';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 interface Props {
     data: any;
@@ -37,8 +38,11 @@ const useStyles = makeStyles((theme: Theme) => ({
         boxShadow: 'none !important',
         backgroundColor: 'transparent',
         '& .MuiAccordionSummary-root': {
-            padding: '20px',
+            padding: '10px 20px',
             backgroundColor: 'transparent',
+            [theme.breakpoints.up('sm')]: {
+                padding: '10px 60px 10px 20px',
+            },
             [theme.breakpoints.up('md')]: {
                 padding: '10px 20px',
             }
@@ -101,6 +105,9 @@ const useStyles = makeStyles((theme: Theme) => ({
         width: '100%',
         [theme.breakpoints.up('sm')]: {
             width: '200px'
+        },
+        [theme.breakpoints.up('md')]: {
+            width: '200px'
         }
     },
     cover: {
@@ -112,9 +119,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     info: {
         width: '100%',
-        maxWidth: '480px',
-        padding: '20px 0',
-        margin: '0 auto'
+        maxWidth: '400px',
+        padding: '20px',
+        margin: '0 auto',
+        [theme.breakpoints.up('sm')]: {
+            width: '400px',
+            padding: '20px 0'
+        }
     },
     bookName: {
         fontSize: theme.typography.pxToRem(24),
@@ -162,9 +173,11 @@ const DocumentAccordion = ({data}: Props) => {
             <AccordionSummary expandIcon={<ArrowDownwardOutlinedIcon/>}>
                 <div className={classes.head}>
                     <Grid container spacing={mdUp ? 4 : 2}>
-                        <Grid item xs={12} sm={6} md={3}>
-                            <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
-                                <BookmarkBorderOutlinedIcon/>
+                        <Grid item xs={6} sm={4} md={4}>
+                            <Box display={'flex'} alignItems={'center'} flexWrap={'nowrap'}
+                                 className={classes.headItem}>
+                                {/*<FontAwesomeIcon icon={faBook}/>*/}
+                                <MapOutlinedIcon/>
                                 <div className={classes.ellipsisWrapper}>
                                     <Typography variant={"body1"} component={'div'}>
                                         <LinesEllipsis
@@ -177,9 +190,9 @@ const DocumentAccordion = ({data}: Props) => {
                                 </div>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid item xs={6} sm={3} md={3}>
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
-                                <BookmarkBorderOutlinedIcon/>
+                                <EditOutlinedIcon/>
                                 <div className={classes.ellipsisWrapper}>
                                     <Typography variant={"body1"} component={'div'}>
                                         <LinesEllipsis
@@ -193,19 +206,24 @@ const DocumentAccordion = ({data}: Props) => {
                             </Box>
 
                         </Grid>
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid item xs={6} sm={3} md={3}>
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
-                                <BookmarkBorderOutlinedIcon/>
-                                <Typography variant={"body1"} component={'div'}>
-                                    {
-                                        (!isValueEmpty(data.publishers)) ? data.publishers : '無資料'
-                                    }
-                                </Typography>
+                                <DomainOutlinedIcon/>
+                                <div className={classes.ellipsisWrapper}>
+                                    <Typography variant={"body1"} component={'div'}>
+                                        <LinesEllipsis
+                                            text={(!isValueEmpty(data.publishers)) ? data.publishers : '無資料'}
+                                            maxLine='1'
+                                            ellipsis='...'
+                                            trimRight
+                                            basedOn='letters'/>
+                                    </Typography>
+                                </div>
                             </Box>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={3}>
+                        <Grid item xs={6} sm={2} md={2}>
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
-                                <BookmarkBorderOutlinedIcon/>
+                                <BookmarksOutlinedIcon/>
                                 <Typography variant={"body1"} component={'div'}>
                                     {data.items[0].materialType}
                                 </Typography>
@@ -215,58 +233,64 @@ const DocumentAccordion = ({data}: Props) => {
                 </div>
             </AccordionSummary>
             <AccordionDetails>
-                <Grid container
-                      justify={smUp ? "center" : "flex-start"}
-                      alignItems={"center"}
-                      spacing={4}
-                      className={classes.detailContent}>
-                    <Grid item xs={12} sm={'auto'}>
-                        <RatioContainer ratio={{xs: 535 / 330, sm: 535 / 330, md: 535 / 330}}
-                                        className={classes.coverRatio}>
-                            <div className={classes.cover}/>
-                        </RatioContainer>
+                <div className={classes.detailContent}>
+                    <Grid container
+                          justify={smUp ? "center" : "flex-start"}
+                          alignItems={"center"}
+                          spacing={4}>
+                        <Hidden xsDown>
+                            <Grid item xs={12} sm={'auto'}>
+                                <RatioContainer ratio={{xs: 200 / 150, sm: 200 / 150, md: 200 / 150}}
+                                                className={classes.coverRatio}>
+                                    <div className={classes.cover}/>
+                                </RatioContainer>
+                            </Grid>
+                        </Hidden>
+                        <Grid item xs={12} sm={'auto'}>
+                            <div className={classes.info}>
+                                <a href={`http://lib.tnml.tn.edu.tw/webpac/content.cfm?mid=${data.mId}`}
+                                   target='_blank'
+                                   className={classes.bookName}>
+                                    {getBookTitle(data.title)}
+                                </a>
+                                <Table className={classes.table} aria-label="simple table">
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell component="th" scope="row">作者</TableCell>
+                                            <TableCell>
+                                                {data.authors}
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell component="th" scope="row">出版社</TableCell>
+                                            <TableCell>
+                                                {data.publishers}
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell component="th" scope="row">出版年</TableCell>
+                                            <TableCell>
+                                                {data.year}
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell component="th" scope="row">ISBN/ISSN</TableCell>
+                                            <TableCell>
+                                                {data.isbns}
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell component="th" scope="row">書目</TableCell>
+                                            <TableCell>
+                                                {data.recordType}
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </div>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={'auto'}>
-                        <div className={classes.info}>
-                            <a href={`https://lib.tnml.tn.edu.tw/webpac/content.cfm?mid=${data.mId}`}
-                               target='_blank'
-                               className={classes.bookName}>
-                                {getBookTitle(data.title)}
-                            </a>
-                            <Typography variant={"body1"}>
-                                {data.authors}
-                            </Typography>
-                            <Table className={classes.table} aria-label="simple table">
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell component="th" scope="row">出版社</TableCell>
-                                        <TableCell>
-                                            {data.publishers}
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell component="th" scope="row">出版年</TableCell>
-                                        <TableCell>
-                                            {data.year}
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell component="th" scope="row">ISBN/ISSN</TableCell>
-                                        <TableCell>
-                                            {data.isbns}
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell component="th" scope="row">書目</TableCell>
-                                        <TableCell>
-                                            {data.recordType}
-                                        </TableCell>
-                                    </TableRow>
-                                </TableBody>
-                            </Table>
-                        </div>
-                    </Grid>
-                </Grid>
+                </div>
             </AccordionDetails>
         </Accordion>
     );
