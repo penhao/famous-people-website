@@ -40,9 +40,10 @@ export const fetchDocumentData = async (keyword: string, start: number, limit: n
             limit: limit,
             sb: 'relevance',
             ob: 'asc',
-            keyword: encodeURIComponent(keyword)
+            kw: keyword
         }
     };
+    //http://163.26.71.106:8080/toread/API?identify=TN&func=findBibliographicDetailByKw&start=1&limit=20&sb=relevance&ob=asc&keyword=%2525E5%252590%2525B3%2525E6%252596%2525B0%2525E6%2525A6%2525AE
     // http://163.26.71.106:8080/toread/API?identify=TN&func=findBibliographicDetailByKw&start=0&limit=5&sb=relevance&ob=asc&kw=%E5%90%B3%E6%96%B0%E6%A6%AE
     const response: any = await get(`http://163.26.71.106:8080/toread/API`, requestConfig);
     return response;
