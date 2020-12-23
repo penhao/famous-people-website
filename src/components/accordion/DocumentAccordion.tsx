@@ -176,7 +176,6 @@ const DocumentAccordion = ({data}: Props) => {
                         <Grid item xs={6} sm={4} md={4}>
                             <Box display={'flex'} alignItems={'center'} flexWrap={'nowrap'}
                                  className={classes.headItem}>
-                                {/*<FontAwesomeIcon icon={faBook}/>*/}
                                 <MapOutlinedIcon/>
                                 <div className={classes.ellipsisWrapper}>
                                     <Typography variant={"body1"} component={'div'}>
@@ -225,7 +224,9 @@ const DocumentAccordion = ({data}: Props) => {
                             <Box display={'flex'} flexWrap={'nowrap'} className={classes.headItem}>
                                 <BookmarksOutlinedIcon/>
                                 <Typography variant={"body1"} component={'div'}>
-                                    {data.items[0].materialType}
+                                    {
+                                        (data.items && data.items.length) ? data.items[0].materialType : ''
+                                    }
                                 </Typography>
                             </Box>
                         </Grid>

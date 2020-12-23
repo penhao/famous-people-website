@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Layout from "../../components/Layout";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Theme} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import {useRouter} from "next/router";
 import {GetServerSidePropsContext} from "next";
 import {fetchDetailData, fetchDocumentData} from "../../api/ApiService";
 import Grid from "@material-ui/core/Grid";
@@ -15,7 +14,6 @@ import DetailIntro from "../../components/sections/detail/DetailIntro";
 import DetailCollectionList from "../../components/sections/detail/DetailCollectionList";
 import {useGlobalStyles} from "../../mui/GlobalStyles";
 import clsx from "clsx";
-import {BookData} from "../../api/BookData";
 
 const useStyles = makeStyles((theme: Theme) => ({
     label: {
@@ -72,23 +70,18 @@ const useStyles = makeStyles((theme: Theme) => ({
         }
     }
 }));
-const FamousPeopleDetail = ({fetchPost}) => {
+const FamousPeopleDetail = ({fetchPost, fetchDocument}) => {
 
-    const router = useRouter();
-    const queryId = Number(router.query.slug[0]);
-    const queryKeyword = router.query.slug[1];
     const classes = useStyles();
     const globalClasses = useGlobalStyles();
     const [value, setValue] = React.useState(0);
-    const [documentData, setDocumentData] = React.useState(null);
-    const getDocumentList = async (start: number) => {
-        return await fetchDocumentData(queryKeyword, start, 10);
-    };
+    const [documentData, setDocumentData] = React.useState([]);
+
     useEffect(() => {
-        if (BookData.status === 'ok' && BookData.querys.length) {
-            setDocumentData(BookData.querys);
+        if (fetchDocument.status === 'ok' && fetchDocument.querys.length) {
+            setDocumentData(fetchDocument.querys);
         }
-    }, [fetchPost]);
+    }, [fetchPost, fetchDocument]);
 
     const TabPanel = (props: any) => {
         const {children, value, index, ...other} = props;
@@ -115,7 +108,7 @@ const FamousPeopleDetail = ({fetchPost}) => {
         setValue(newValue);
     };
 
-    console.log(fetchPost);
+    console.log(fetchDocument);
 
     return (
         <Layout>
@@ -186,10 +179,10 @@ const FamousPeopleDetail = ({fetchPost}) => {
     );
 };
 
-// @ts-ignore
 export const getServerSideProps = async ({query, res}: GetServerSidePropsContext) => {
     const detailId = Number(query?.slug[0]);
     const fetchPost = await fetchDetailData(detailId);
+    const fetchDocument = await fetchDocumentData(query?.slug[1], 1, 100);
     if (fetchPost.error) {
         const redirectUrl = `/404`;
         res.setHeader("location", redirectUrl);
@@ -198,7 +191,8 @@ export const getServerSideProps = async ({query, res}: GetServerSidePropsContext
     }
     return {
         props: {
-            fetchPost
+            fetchPost,
+            fetchDocument
         }
     }
 };
