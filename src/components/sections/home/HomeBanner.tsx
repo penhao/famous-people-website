@@ -77,14 +77,11 @@ const HomeBanner = () => {
                             </Typography>
                             <Typography variant={"body1"}
                                         align={mdUp ? 'left' : 'center'}>
-                                這是⼀個跨越時空的平台<br/>
-                                兩百多位名⼈在此⿑聚⼀堂<br/>
-                                以理性和感性的面向<br/>
-                                透過藝術 文學 政治 醫療 經濟 宗教 技術 學術教育交織出臺南記憶<br/>
-                                編織出當代臺南的氛圍與樣貌<br/>
-                                <br/>
-                                期許你能透過台南名人搜尋平台<br/>
-                                理解一下每一位名人的生平貢獻
+                                這是一場跨越時空的對話<br/>
+                                200多位台南名人在此齊聚<br/>
+                                文學家、宗教家、政治家、實業家、教育家、藝術家、及來自異鄉的奉獻者<br/>
+                                歷史記憶光影流轉<br/>
+                                見證屬於臺南的理性與感性
                             </Typography>
                         </SectionInfo>
                         <div className={classes.search}>

@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme: Theme) => ({
         }
     },
     QRCode: {
-        width: '120px'
+        width: '100px',
+        transform: 'translate(-5px,-5px)'
     },
     socialList: {
         marginTop: '10px',
@@ -72,10 +73,11 @@ const Footer = () => {
                         </NormalLink>
                     </Grid>
                     <Grid item xs={12} sm={12} md={3}>
-                        <Typography variant={"body1"} component={'span'}>台南市永康區中山南路363號</Typography>
-                        <Typography variant={"body1"}>開放時間：0800-2200</Typography>
+                        <Typography variant={"body1"} component={'span'}>臺南市永康區康橋大道255號</Typography>
+                        <Typography variant={"body1"}>服務時間: 09:30-21:00</Typography>
                         <div className={classes.socialList}>
-                            <NormalLink href={'https://www.tnpl.tn.edu.tw/w5368759830002704284/index'} customClass={classes.socialLink}>
+                            <NormalLink href={'https://www.tnpl.tn.edu.tw/w5368759830002704284/index'}
+                                        customClass={classes.socialLink}>
                                 <FontAwesomeIcon icon={faLink}/>
                             </NormalLink>
                             <NormalLink href={'https://reurl.cc/6219jO'} customClass={classes.socialLink}>
@@ -87,13 +89,13 @@ const Footer = () => {
                         <address className={classes.address}>
                             <div>
                                 <FontAwesomeIcon icon={faPhone} className={classes.icon}/>
-                                <NormalLink href={'tel:062255146'}>
-                                    <Typography variant={"body1"} component={'span'}>(06)2255146</Typography>
+                                <NormalLink href={'tel:063035855'}>
+                                    <Typography variant={"body1"} component={'span'}>06-3035855</Typography>
                                 </NormalLink>
                             </div>
                             <div>
                                 <FontAwesomeIcon icon={faPrint} className={classes.icon}/>
-                                <Typography variant={"body1"} component={'span'}>(06)2210826、2206216</Typography>
+                                <Typography variant={"body1"} component={'span'}>06-3036135</Typography>
                             </div>
                             <div>
                                 <FontAwesomeIcon icon={faEnvelope} className={classes.icon}/>

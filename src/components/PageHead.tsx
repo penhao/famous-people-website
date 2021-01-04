@@ -6,7 +6,7 @@ interface Props {
     title?: string;
 }
 
-const PageHead = ({title = '臺南名人堂特展'}: Props) => {
+const PageHead = ({title = '臺南名人堂特展 | 臺南歷史名人資料庫'}: Props) => {
     return (
         <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
@@ -17,7 +17,7 @@ const PageHead = ({title = '臺南名人堂特展'}: Props) => {
             <meta property="og:image:height" content="315"/>
             <meta property="og:title" content={title}/>
             <meta property="og:description"
-                  content={'這是⼀個跨越時空的平台，兩百多位名⼈在此⿑聚⼀堂，以理性和感性的面向；透過藝術、文學、政治、醫療、經濟、宗教、技術與學術教育交織出臺南記憶，編織出當代臺南的氛圍與樣貌，期許你能透過台南名人搜尋平台，理解一下每一位名人的生平貢獻。'}/>
+                  content={'這是一場跨越時空的對話，200多位台南名人在此齊聚，文學家、宗教家、政治家、實業家、教育家、藝術家、及來自異鄉的奉獻者，歷史記憶光影流轉，見證屬於臺南的理性與感性。'}/>
             <meta property="og:url" content={`${domain}`}/>
             <title>{title}</title>
         </Head>

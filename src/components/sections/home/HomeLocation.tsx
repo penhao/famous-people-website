@@ -45,8 +45,8 @@ const HomeLocation = () => {
                             <li>
                                 <Typography variant={"body2"} color={"primary"}>電話</Typography>
                                 <Typography variant={"body1"}>
-                                    <NormalLink href={'tel:062255146'}>
-                                        (06)2255146
+                                    <NormalLink href={'tel:063035855'}>
+                                        06-3035855
                                     </NormalLink>
                                 </Typography>
                             </li>
@@ -61,9 +61,7 @@ const HomeLocation = () => {
                             <li>
                                 <Typography variant={"body2"} color={"primary"}>開放時間</Typography>
                                 <Typography variant={"body1"}>
-                                    週二～週日<br/>
-                                    早上9:00至晚上9:00<br/>
-                                    (週一、國定假日休館)
+                                    早上8:30至晚上9:00
                                 </Typography>
                             </li>
                         </ul>

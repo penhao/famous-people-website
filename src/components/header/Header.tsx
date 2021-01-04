@@ -53,7 +53,7 @@ const Header = () => {
             <Sticky>
                 <div className={classes.headerInner}>
                     <NavLink hrefPath={'/'} asPath={'/'} className={classes.logo}>
-                        <img src="/images/logo.svg" alt=""/>
+                        <img src="/images/logo.png" alt=""/>
                     </NavLink>
                     <MenuToggle isOpen={isOpen} clickHandler={handlerToggle}/>
                 </div>
