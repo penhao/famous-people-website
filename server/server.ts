@@ -2,40 +2,49 @@ import express, {Request, Response} from "express";
 import next from "next";
 
 const {createServer} = require('https');
-const dev = process.env.NODE_ENV !== "production";
+const {parse} = require('url');
+const {readFileSync} = require('fs');
+
+const dev = process.env.NODE_ENV !== 'production';
+const port = parseInt(process.env.PORT, 10) || 3000;
+const sslPort = 443;
 const app = next({dev});
 const handle = app.getRequestHandler();
-const port = process.env.PORT || 3000;
-
-/*const httpsOptions = {
-    key: readFileSync('./certificates/key.pem'),
-    cert: readFileSync('./certificates/cert.pem')
-};
 
 app.prepare()
     .then(() => {
-        createServer(httpsOptions, (req, res) => {
-            const parsedUrl = parse(req.url, true);
-            handle(req, res, parsedUrl);
-        }).listen(port, err => {
-            if (err) throw err;
-            console.log(`> Ready on https://localhost:${port}`);
-        })
-    });*/
+        if (dev) {
+            const server = express();
+            server.all("*", (req: Request, res: Response) => {
+                return handle(req, res);
+            });
+            server.listen(dev ? port : sslPort, (err?: any) => {
+                if (err) throw err;
+                console.log(`> Ready on localhost:${port} - env ${process.env.NODE_ENV}`);
+            });
+        } else {
+            const httpsOptions = {
+                key: readFileSync('/home/centos/myserver.key'),
+                ca: readFileSync('/home/centos/3A0E47BFC8835AD9412EEEBFE31AAEC2.cer'),
+                cert: readFileSync('/home/centos/server.csr')
+            };
+            createServer(httpsOptions, (req: Request, res: Response) => {
+                const parsedUrl = parse(req.url, true);
+                handle(req, res, parsedUrl);
+            }).listen(sslPort, (err?: any) => {
+                if (err) throw err;
+                console.log(`> Ready on https://localhost:${port}`);
+            })
+        }
+    });
 
-(async () => {
-    try {
-        await app.prepare();
-        const server = express();
-        server.all("*", (req: Request, res: Response) => {
-            return handle(req, res);
-        });
-        server.listen(port, (err?: any) => {
-            if (err) throw err;
-            console.log(`> Ready on localhost:${port} - env ${process.env.NODE_ENV}`);
-        });
-    } catch (e) {
-        console.error(e);
-        process.exit(1);
-    }
-})();
+/*app.prepare().then(() => {
+    const server = express();
+    server.all("*", (req: Request, res: Response) => {
+        return handle(req, res);
+    });
+    server.listen(dev ? port : sslPort, (err?: any) => {
+        if (err) throw err;
+        console.log(`> Ready on localhost:${port} - env ${process.env.NODE_ENV}`);
+    });
+});*/
