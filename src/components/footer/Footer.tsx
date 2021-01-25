@@ -74,7 +74,7 @@ const Footer = () => {
                     </Grid>
                     <Grid item xs={12} sm={12} md={3}>
                         <Typography variant={"body1"} component={'span'}>臺南市永康區康橋大道255號</Typography>
-                        <Typography variant={"body1"}>服務時間: 09:30-21:00</Typography>
+                        <Typography variant={"body1"}>服務時間: 08:30-21:00</Typography>
                         <div className={classes.socialList}>
                             <NormalLink href={'https://www.tnpl.tn.edu.tw/w5368759830002704284/index'}
                                         customClass={classes.socialLink}>

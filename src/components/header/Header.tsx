@@ -5,6 +5,7 @@ import Sticky from "react-sticky-el";
 import NavLink from "../links/NavLink";
 import MenuToggle from "./MenuToggle";
 import NavDropdown from "./NavDropdown";
+import {useRouter} from "next/router";
 
 const useStyles = makeStyles((theme: Theme) => ({
     header: {
@@ -39,20 +40,24 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 const Header = () => {
     const classes = useStyles();
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
-    const handlerToggle = () => setIsOpen(!isOpen);
+    const handlerToggle = () => {
+        setIsOpen(!isOpen);
+    };
     useEffect(() => {
-        if (isOpen) {
+        setIsOpen(false);
+        /*if (isOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'auto';
-        }
-    });
+        }*/
+    },[router]);
     return (
         <header className={classes.header}>
             <Sticky>
                 <div className={classes.headerInner}>
-                    <NavLink hrefPath={'/'} asPath={'/'} className={classes.logo}>
+                    <NavLink hrefPath={'/'} asPath={'/'} hasDrop={false} className={classes.logo}>
                         <img src="/images/logo.png" alt=""/>
                     </NavLink>
                     <MenuToggle isOpen={isOpen} clickHandler={handlerToggle}/>

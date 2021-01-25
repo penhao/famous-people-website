@@ -77,7 +77,7 @@ const CategoryList = ({postData, isMore, moreHandler}: Props) => {
                             onClick={moreHandler}
                             className={classes.more}>
                         {
-                            isMore ? '載入更多' : '已載入完成'
+                            isMore ? '載入更多' : '已全部載入'
                         }
                     </Button>
                 </Grid>

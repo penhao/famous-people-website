@@ -19,6 +19,10 @@ const PageHead = ({title = '臺南名人堂特展 | 臺南歷史名人資料庫'
             <meta property="og:description"
                   content={'這是一場跨越時空的對話，200多位台南名人在此齊聚，文學家、宗教家、政治家、實業家、教育家、藝術家、及來自異鄉的奉獻者，歷史記憶光影流轉，見證屬於臺南的理性與感性。'}/>
             <meta property="og:url" content={`${domain}`}/>
+            <link rel="preconnect" href="https://fonts.gstatic.com"/>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+                rel="stylesheet"/>
             <title>{title}</title>
         </Head>
     );

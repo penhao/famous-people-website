@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {Theme} from "@material-ui/core";
 import Drawer from "@material-ui/core/Drawer/Drawer";
@@ -70,6 +70,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 const NavDropdown = ({isOpen, clickHandler}: Props) => {
     const classes = useStyles();
     const [categoryFilterList, getCategoryById] = useCategoryFilterList();
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    });
     return (
         <Fade in={isOpen}>
             <nav className={classes.nav}>

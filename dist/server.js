@@ -23,8 +23,8 @@ app.prepare().then(function () {
     if (!dev) {
         var httpsOptions = {
             key: readFileSync('/home/centos/myserver.key'),
-            ca: readFileSync('/home/centos/3A0E47BFC8835AD9412EEEBFE31AAEC2.cer'),
-            cert: readFileSync('/home/centos/server.csr')
+            cert: readFileSync('/home/centos/ssl/certificate.pem'),
+            ca: readFileSync('/home/centos/server.csr')
         };
         https.createServer(httpsOptions, server).listen(ports.https);
     }

@@ -14,6 +14,7 @@ import DetailIntro from "../../components/sections/detail/DetailIntro";
 import DetailCollectionList from "../../components/sections/detail/DetailCollectionList";
 import {useGlobalStyles} from "../../mui/GlobalStyles";
 import clsx from "clsx";
+import {useRouter} from "next/router";
 
 const useStyles = makeStyles((theme: Theme) => ({
     label: {
@@ -74,6 +75,7 @@ const FamousPeopleDetail = ({fetchPost, fetchDocument}) => {
 
     const classes = useStyles();
     const globalClasses = useGlobalStyles();
+    const router = useRouter();
     const [value, setValue] = React.useState(0);
     const [documentData, setDocumentData] = React.useState([]);
 
@@ -107,9 +109,6 @@ const FamousPeopleDetail = ({fetchPost, fetchDocument}) => {
     const handleChange = (event: React.MouseEvent, newValue: number) => {
         setValue(newValue);
     };
-
-    console.log(fetchDocument);
-
     return (
         <Layout>
             {
@@ -182,7 +181,7 @@ const FamousPeopleDetail = ({fetchPost, fetchDocument}) => {
 export const getServerSideProps = async ({query, res}: GetServerSidePropsContext) => {
     const detailId = Number(query?.slug[0]);
     const fetchPost = await fetchDetailData(detailId);
-    const fetchDocument = await fetchDocumentData(query?.slug[1], 1, 100);
+    const fetchDocument = await fetchDocumentData(query?.slug[1], 1, 500);
     if (fetchPost.error) {
         const redirectUrl = `/404`;
         res.setHeader("location", redirectUrl);
