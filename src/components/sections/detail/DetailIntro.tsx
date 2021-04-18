@@ -55,6 +55,17 @@ const DetailIntro = ({postData}: Props) => {
                                     desc={postData.memo}
                                     titleColor={theme.palette.primary.main}/>
                     </Grid>
+                    {
+                        postData?.memo_images.length
+                            ?
+                            <Grid item xs={12} className={globalClasses.item}>
+                                <RatioContainer ratio={{xs: 380 / 640, sm: 380 / 640, md: 380 / 640}}>
+                                    <PhotoAlbumToggle photoData={postData.memo_images}/>
+                                </RatioContainer>
+                            </Grid>
+                            :
+                            null
+                    }
                     <Grid item xs={12} className={globalClasses.item}>
                         <DetailInfo title={'資料出處'}
                                     desc={postData.source}/>

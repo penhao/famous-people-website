@@ -78,7 +78,7 @@ const FamousPeopleDetail = ({fetchPost, fetchDocument}) => {
     const router = useRouter();
     const [value, setValue] = React.useState(0);
     const [documentData, setDocumentData] = React.useState([]);
-
+    console.log(fetchPost);
     useEffect(() => {
         if (fetchDocument.status === 'ok' && fetchDocument.querys.length) {
             setDocumentData(fetchDocument.querys);
