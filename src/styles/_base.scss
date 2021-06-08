@@ -1,57 +1,71 @@
 html,
 body {
-  position: relative;
-  width: 100%;
-  background-color: white;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    font-family: "Noto Sans TC", sans-serif;
 
-  * {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
-    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
-    outline: none !important;
-  }
+    * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+        -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
+        outline: none !important;
+    }
 }
 
 body {
-  overflow: hidden;
-  overflow-y: auto;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
-h1, h2, h3, h4, h5, h6, p {
-  margin: 0;
-  padding: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
 }
 
 ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-
-  li {
     margin: 0;
     padding: 0;
-  }
+    list-style-type: none;
+
+    li {
+        margin: 0;
+        padding: 0;
+    }
 }
 
 a {
-  display: inline-block;
-  text-decoration: none;
+    display: inline-block;
+    text-decoration: none;
 }
 
 svg {
-  display: block;
+    display: block;
 }
 
 i {
-  display: block;
+    display: block;
 }
 
 img {
-  display: block;
-  width: 100%;
-  height: auto;
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 figure {
-  margin: 0;
+    margin: 0;
+}
+
+.fontSerif {
+    font-family: "Noto Serif TC", sans-serif;
+}
+.fontSans {
+    font-family: "Noto Sans TC", sans-serif;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Theme} from "@material-ui/core";
+import { Grid, Theme } from "@material-ui/core";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Typography from "@material-ui/core/Typography";
 import DrawLineItem from "../../DrawLineItem";
@@ -60,32 +60,32 @@ const HomeBanner = () => {
     return (
         <Grid container>
             <Grid item xs={12} md={6}>
-                <DrawLineItem drawLine={{xs: false, sm: false, md: true}}>
+                <DrawLineItem drawLine={{ xs: false, sm: false, md: true }}>
                     <div className={classes.banner}>
-                        <img src="/images/home/banner@2x.png" alt=""/>
+                        <img src="/images/home/banner@2x.png" alt="" />
                     </div>
                 </DrawLineItem>
             </Grid>
             <Grid item xs={12} md={6}>
-                <DrawLineItem drawLine={{xs: false, sm: false, md: false}}>
+                <DrawLineItem drawLine={{ xs: false, sm: false, md: false }}>
                     <Box display={'flex'} flexDirection={'column'} className={classes.infoWrapper}>
                         <SectionInfo className={clsx(classes.info)}>
                             <Typography variant={"h3"}
-                                        color={"primary"}
-                                        align={mdUp ? 'left' : 'center'}>
+                                color={"primary"}
+                                align={mdUp ? 'left' : 'center'}>
                                 臺南歷史名人資料庫
                             </Typography>
                             <Typography variant={"body1"}
-                                        align={mdUp ? 'left' : 'center'}>
-                                這是一場跨越時空的對話<br/>
-                                200多位台南名人在此齊聚<br/>
-                                文學家、宗教家、政治家、實業家、教育家、藝術家、及來自異鄉的奉獻者<br/>
-                                歷史記憶光影流轉<br/>
+                                align={mdUp ? 'left' : 'center'}>
+                                這是一場跨越時空的對話<br />
+                                200多位臺南名人在此齊聚<br />
+                                文學家、宗教家、政治家、實業家、教育家、藝術家、及來自異鄉的奉獻者<br />
+                                歷史記憶光影流轉<br />
                                 見證屬於臺南的理性與感性
                             </Typography>
                         </SectionInfo>
                         <div className={classes.search}>
-                            <SearchForm/>
+                            <SearchForm />
                         </div>
                     </Box>
                 </DrawLineItem>

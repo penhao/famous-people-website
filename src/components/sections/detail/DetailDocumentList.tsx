@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import DocumentAccordion from "../../accordion/DocumentAccordion";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {Theme} from "@material-ui/core";
+import { Theme } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import ReplayIcon from "@material-ui/core/SvgIcon/SvgIcon";
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         }
     }
 }));
-const DetailDocumentList = ({documentData}: Props) => {
+const DetailDocumentList = ({ documentData }: Props) => {
     const classes = useStyles();
     const [isMore, setIsMore] = useState(true);
     const [limit, setLimit] = useState(50);
@@ -63,7 +63,7 @@ const DetailDocumentList = ({documentData}: Props) => {
                     postData.map((document: any, index: number) => {
                         return (
                             <Grid item xs={12} key={index}>
-                                <DocumentAccordion data={document}/>
+                                <DocumentAccordion data={document} />
                             </Grid>
                         )
                     })
@@ -72,9 +72,9 @@ const DetailDocumentList = ({documentData}: Props) => {
             }
             <Grid item xs={12}>
                 <Button disabled={postData.length >= documentData.length}
-                        endIcon={<ReplayIcon/>}
-                        onClick={handleMoreClick}
-                        className={classes.more}>
+                    endIcon={<ReplayIcon />}
+                    onClick={handleMoreClick}
+                    className={classes.more}>
                     {
                         !documentData.length ? '無相關資料' : postData.length < documentData.length ? '載入更多' : '已全部載入'
                     }

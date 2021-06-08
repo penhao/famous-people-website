@@ -3,10 +3,10 @@ import Grid from "@material-ui/core/Grid";
 import DrawLineItem from "../../DrawLineItem";
 import DetailInfo from "./DetailInfo";
 import PhotoAlbumToggle from "../../buttons/PhotoAlbumToggle";
-import {useLineGridStyles} from "../GridStyles";
-import {useGlobalStyles} from "../../../mui/GlobalStyles";
+import { useLineGridStyles } from "../GridStyles";
+import { useGlobalStyles } from "../../../mui/GlobalStyles";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import {Theme} from "@material-ui/core";
+import { Theme } from "@material-ui/core";
 import useTheme from "@material-ui/core/styles/useTheme";
 import clsx from "clsx";
 import Sticky from "react-sticky-el";
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         top: '90px'
     }
 }));
-const DetailIntro = ({postData}: Props) => {
+const DetailIntro = ({ postData }: Props) => {
     const classes = useStyles();
     const globalClasses = useGlobalStyles();
     const theme = useTheme();
@@ -35,32 +35,38 @@ const DetailIntro = ({postData}: Props) => {
         <Grid container className={globalClasses.drawLineSmUp}>
             <Grid item xs={12} sm={6} className={clsx(classes.bgGrey, globalClasses.item)}>
                 <DetailInfo title={'生平小傳'}
-                            desc={postData.life_intro}
-                            titleColor={theme.palette.common.white}
-                            descColor={theme.palette.common.white}/>
+                    desc={postData.life_intro}
+                    titleColor={theme.palette.common.white}
+                    descColor={theme.palette.common.white} />
             </Grid>
             <Grid item xs={12} sm={6}>
                 <Grid container>
                     <Grid item xs={12} className={globalClasses.item}>
-                        <DetailInfo title={'著名事蹟、成就或貢獻'}
-                                    desc={postData.achieve}
-                                    titleColor={theme.palette.primary.main}/>
+                        <DetailInfo title={'事蹟成就'}
+                            desc={postData.achieve}
+                            titleColor={theme.palette.primary.main} />
                     </Grid>
                     <Grid item xs={12} className={globalClasses.item}>
-                        <DetailInfo title={'故居或故址詳細地址與現況描述'}
-                                    desc={`${postData.address}<br/>${postData.address_memo}`}/>
+                        <DetailInfo title={'名人故居'}
+                            desc={`${postData.address}<br/>${postData.address_memo}`} />
                     </Grid>
-                    <Grid item xs={12} className={globalClasses.item}>
-                        <DetailInfo title={'備註'}
+                    {
+                        postData?.memo
+                            ?
+                            <Grid item xs={12} className={globalClasses.item}>
+                                <DetailInfo title={'備註'}
                                     desc={postData.memo}
-                                    titleColor={theme.palette.primary.main}/>
-                    </Grid>
+                                    titleColor={theme.palette.primary.main} />
+                            </Grid>
+                            :
+                            null
+                    }
                     {
                         postData?.memo_images.length
                             ?
                             <Grid item xs={12} className={globalClasses.item}>
-                                <RatioContainer ratio={{xs: 380 / 640, sm: 380 / 640, md: 380 / 640}}>
-                                    <PhotoAlbumToggle photoData={postData.memo_images}/>
+                                <RatioContainer ratio={{ xs: 380 / 640, sm: 380 / 640, md: 380 / 640 }}>
+                                    <PhotoAlbumToggle photoData={postData.memo_images} />
                                 </RatioContainer>
                             </Grid>
                             :
@@ -68,19 +74,19 @@ const DetailIntro = ({postData}: Props) => {
                     }
                     <Grid item xs={12} className={globalClasses.item}>
                         <DetailInfo title={'資料出處'}
-                                    desc={postData.source}/>
+                            desc={postData.source} />
                     </Grid>
                     <Grid item xs={12} className={globalClasses.item}>
                         <DetailInfo title={'相關文獻、研究資料與延伸閱讀'}
-                                    desc={postData.more_read}
-                                    titleColor={theme.palette.primary.main}/>
+                            desc={postData.more_read}
+                            titleColor={theme.palette.primary.main} />
                     </Grid>
                     {
                         postData?.address_images.length
                             ?
                             <Grid item xs={12} className={globalClasses.item}>
-                                <RatioContainer ratio={{xs: 380 / 640, sm: 380 / 640, md: 380 / 640}}>
-                                    <PhotoAlbumToggle photoData={postData.address_images}/>
+                                <RatioContainer ratio={{ xs: 380 / 640, sm: 380 / 640, md: 380 / 640 }}>
+                                    <PhotoAlbumToggle photoData={postData.address_images} />
                                 </RatioContainer>
                             </Grid>
                             :
