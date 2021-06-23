@@ -33,24 +33,6 @@ const get = async (url: string, config: AxiosRequestConfig) => {
     };
     return await axios.get(url, requestConfig).catch(CatchAxiosError);
 };
-export const fetchNewDocument = async () => {
-    const requestConfig: AxiosRequestConfig = {
-        params: {
-            identify: "TN",
-            func: "findBibliographicDetailByKw",
-            start: 1,
-            limit: 20,
-            sb: "relevance",
-            ob: "asc",
-            kw: "%E8%91%89%E7%9F%B3%E6%BF%A4",
-        },
-    };
-    const response: any = await get(
-        `https://toread7.tnml.tn.edu.tw/toread/API`,
-        requestConfig
-    );
-    return response?.status ? response.data : response;
-};
 export const fetchDocumentData = async (
     keyword: string,
     start: number,
