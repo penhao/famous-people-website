@@ -77,12 +77,35 @@ const FamousPeopleDetail = ({ fetchPost, fetchDocument }) => {
     const globalClasses = useGlobalStyles();
     const router = useRouter();
     const [value, setValue] = React.useState(0);
+
+    const limit = 20;
+    const [startCount, setStartCount] = React.useState(0);
     const [documentData, setDocumentData] = React.useState([]);
-    console.log(fetchPost);
-    useEffect(() => {
-        if (fetchDocument.status === 'ok' && fetchDocument.querys.length) {
-            setDocumentData(fetchDocument.querys);
+    const [hasMore, setHasMore] = React.useState(false);
+    const [isFetching, setIsFetching] = React.useState(false);
+
+    const getDocument = async () => {
+        setIsFetching(true);
+        const result = await fetchDocumentData(router.query.slug[1], startCount, limit);
+        if (result.status === 'ok' && result.querys.length) {
+            setDocumentData(prevState => {
+                return [...prevState, ...result.querys]
+            });
+            setStartCount(prevState => prevState + result.querys.length);
+            setHasMore(result.querys.length >= limit);
         }
+        setIsFetching(false);
+    }
+    const handleMoreClick = () => {
+        const timeout = window.setTimeout(() => {
+            getDocument();
+            window.clearTimeout(timeout);
+        }, 300);
+
+    }
+
+    useEffect(() => {
+        getDocument();
     }, [fetchPost, fetchDocument]);
 
     const TabPanel = (props: any) => {
@@ -158,7 +181,7 @@ const FamousPeopleDetail = ({ fetchPost, fetchDocument }) => {
                                 <DetailIntro postData={fetchPost.data} />
                             </TabPanel>
                             <TabPanel value={value} index={1}>
-                                <DetailDocumentList documentData={documentData} />
+                                <DetailDocumentList documentData={documentData} hasMore={hasMore} isFetching={isFetching} moreClickHandler={handleMoreClick} />
                             </TabPanel>
                             {
                                 (fetchPost.data.collectible.length)
@@ -181,7 +204,7 @@ const FamousPeopleDetail = ({ fetchPost, fetchDocument }) => {
 export const getServerSideProps = async ({ query, res }: GetServerSidePropsContext) => {
     const detailId = Number(query?.slug[0]);
     const fetchPost = await fetchDetailData(detailId);
-    const fetchDocument = await fetchDocumentData(query?.slug[1], 1, 500);
+    // const fetchDocument = await fetchDocumentData(query?.slug[1], 1, 10);
     if (fetchPost.error) {
         const redirectUrl = `/404`;
         res.setHeader("location", redirectUrl);
@@ -191,7 +214,7 @@ export const getServerSideProps = async ({ query, res }: GetServerSidePropsConte
     return {
         props: {
             fetchPost,
-            fetchDocument
+            fetchDocument: []
         }
     }
 };

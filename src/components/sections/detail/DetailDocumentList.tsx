@@ -8,6 +8,9 @@ import ReplayIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
 interface Props {
     documentData: any[];
+    hasMore: boolean;
+    isFetching: boolean;
+    moreClickHandler: () => void;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -36,31 +39,15 @@ const useStyles = makeStyles((theme: Theme) => ({
         }
     }
 }));
-const DetailDocumentList = ({ documentData }: Props) => {
+const DetailDocumentList = ({ documentData, hasMore, isFetching, moreClickHandler }: Props) => {
     const classes = useStyles();
-    const [isMore, setIsMore] = useState(true);
-    const [limit, setLimit] = useState(50);
-    const [postData, setPostData] = useState<any[]>([]);
-    const handleMoreClick = () => {
-        const listRange = 10;
-        const total = (limit + listRange <= documentData.length) ? limit + listRange : documentData.length;
-        setLimit(total);
-        setPostData(getPostList(total));
-    };
-    const getPostList = (total: number) => {
-        return documentData.filter((item: any, index: number) => {
-            return index < total
-        });
-    };
-    useEffect(() => {
-        setPostData(getPostList(limit));
-    }, [documentData]);
+
     return (
         <Grid container className={classes.list}>
             {
-                postData?.length
+                documentData.length
                     ?
-                    postData.map((document: any, index: number) => {
+                    documentData.map((document: any, index: number) => {
                         return (
                             <Grid item xs={12} key={index}>
                                 <DocumentAccordion data={document} />
@@ -71,12 +58,18 @@ const DetailDocumentList = ({ documentData }: Props) => {
                     null
             }
             <Grid item xs={12}>
-                <Button disabled={postData.length >= documentData.length}
+                <Button disabled={!hasMore || isFetching}
                     endIcon={<ReplayIcon />}
-                    onClick={handleMoreClick}
+                    onClick={moreClickHandler}
                     className={classes.more}>
                     {
-                        !documentData.length ? '無相關資料' : postData.length < documentData.length ? '載入更多' : '已全部載入'
+                        !documentData.length
+                            ? '無相關資料'
+                            : isFetching
+                                ? "載入中..."
+                                : hasMore
+                                    ? '載入更多'
+                                    : '已全部載入'
                     }
                 </Button>
             </Grid>

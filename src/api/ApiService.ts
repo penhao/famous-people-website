@@ -1,7 +1,8 @@
-import axios, {AxiosRequestConfig} from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import CatchAxiosError from "./Error";
 
-const apiDomain = 'https://tafame.5781000.co';
+// const apiDomain = "https://tafame.5781000.co";
+const apiDomain = "https://tafame.5781000.co";
 /*
 *  '1'=>'藝術類',
     '2'=>'文學類',
@@ -21,37 +22,63 @@ page=頁次
 * */
 const baseConfig: AxiosRequestConfig = {
     headers: {
-        'Content-Type': 'application/json'
-    }
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+    },
 };
 const get = async (url: string, config: AxiosRequestConfig) => {
     const requestConfig = {
         ...baseConfig,
-        ...config
+        ...config,
     };
-    return await axios.get(url, requestConfig).catch(CatchAxiosError)
+    return await axios.get(url, requestConfig).catch(CatchAxiosError);
 };
-export const fetchDocumentData = async (keyword: string, start: number, limit: number = 10) => {
+export const fetchNewDocument = async () => {
     const requestConfig: AxiosRequestConfig = {
         params: {
-            identify: 'TN',
-            func: 'findBibliographicDetailByKw',
+            identify: "TN",
+            func: "findBibliographicDetailByKw",
+            start: 1,
+            limit: 20,
+            sb: "relevance",
+            ob: "asc",
+            kw: "%E8%91%89%E7%9F%B3%E6%BF%A4",
+        },
+    };
+    const response: any = await get(
+        `https://toread7.tnml.tn.edu.tw/toread/API`,
+        requestConfig
+    );
+    return response?.status ? response.data : response;
+};
+export const fetchDocumentData = async (
+    keyword: string,
+    start: number,
+    limit: number = 10
+) => {
+    const requestConfig: AxiosRequestConfig = {
+        params: {
+            identify: "TN",
+            func: "findBibliographicDetailByKw",
             start: start,
             limit: limit,
-            sb: 'relevance',
-            ob: 'asc',
-            kw: keyword
-        }
+            sb: "relevance",
+            ob: "asc",
+            kw: keyword,
+        },
     };
-    const response: any = await get(`http://163.26.71.106:8080/toread/API`, requestConfig);
+    const response: any = await get(
+        `https://toread7.tnml.tn.edu.tw/toread/API`,
+        requestConfig
+    );
     return response?.status ? response.data : response;
 };
 export const fetchCategoryData = async (categoryId: number, pageId: number) => {
     const requestConfig: AxiosRequestConfig = {
         params: {
             cat: categoryId,
-            page: pageId
-        }
+            page: pageId,
+        },
     };
     const response: any = await get(`${apiDomain}/api/`, requestConfig);
     return response?.status ? response.data : response;
@@ -59,8 +86,8 @@ export const fetchCategoryData = async (categoryId: number, pageId: number) => {
 export const fetchDetailData = async (id: number) => {
     const requestConfig: AxiosRequestConfig = {
         params: {
-            userid: id
-        }
+            userid: id,
+        },
     };
     const response: any = await get(`${apiDomain}/api/user`, requestConfig);
     return response?.status ? response.data : response;
@@ -69,8 +96,8 @@ export const fetchSearchData = async (keyword: string, page: number) => {
     const requestConfig: AxiosRequestConfig = {
         params: {
             keyword: keyword,
-            page: page
-        }
+            page: page,
+        },
     };
     const response: any = await get(`${apiDomain}/api/`, requestConfig);
     return response?.status ? response.data : response;

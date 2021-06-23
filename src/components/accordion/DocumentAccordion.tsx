@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme: Theme) => ({
             maxWidth: '670px'
         },
         [theme.breakpoints.up('md')]: {
-            maxWidth: '1000px'
+            maxWidth: '1200px'
         }
     },
     headItem: {
